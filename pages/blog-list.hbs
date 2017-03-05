@@ -1,0 +1,48 @@
+
+{{#each articles}}
+
+<div class="mb5 ph5">
+
+	{{#if photo_url_medium}}
+	<div class="mb4">
+		<a href="/blog/{{url_slug}}"><img class="w-100 db mb0" src="{{photo_url_medium}}" /></a>
+		{{#if photo_caption}}<div class="tc b i f6 white bg-silver pa3 o-50">{{photo_caption}}</div>{{/if}}
+	</div>
+	{{/if}}
+
+	<div class="mb2 f3 b"><a href="/blog/{{url_slug}}">{{title}}</a></div>
+	<div class="gray f5 mb3">Posted by <b>{{screenname}}</b> &nbsp; &mdash; &nbsp; {{date date_published "m/d/Y"}}</div> <!-- l M jS, Y g:ia -->
+
+	{{#if keywords}}<div class="gray f5 mb3">{{#each keywords}}{{#unless first}}, {{/unless}}<a href="{{href}}" class="link b">{{title}}</a>{{/each}}</div>{{/if}}
+
+	{{#if summary}}
+    <div class="lh-copy f4 mb2">{{{nl2br summary}}}</div>
+    <a class="link f6" href="/blog/{{url_slug}}">Read the full story</a>	
+	{{else}}
+		<div class="lh-copy f4 quill-output">
+		{{{body}}}
+		</div>
+	{{/if}}
+
+</div>
+
+<div class="bb bw3 o-10 mb5"></div>
+
+{{/each}}
+
+
+
+
+
+{{#if pagination}}
+<div class="f3 b mb5 ph5 cf">
+{{#if pagination.href_previous}}
+	<a href="{{pagination.href_previous}}" class="link fl">&larr;&nbsp; Previous</a> 
+{{/if}}
+{{#if pagination.href_next}}
+	<a href="{{pagination.href_next}}" class="link fr">Next &nbsp;&rarr;</a>
+{{/if}}
+</div>
+{{/if}}
+
+

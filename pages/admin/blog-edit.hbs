@@ -1,0 +1,119 @@
+{{#if is_admin}}
+
+
+
+
+<div class="flex justify-between bg-black-70 w-100 ph3 pv2 pv3-ns ph4-m ph5-l">
+  <div class="f6 flex-grow">
+    <a class="link white-50 hover-white dib mr4" href="/admin/blog" title="All Users">All Articles</a>
+    <a class="link {{#unless data._id}}white-90{{else}}white-50{{/unless}} hover-white dib mr4" href="/admin/blog/edit/new" title="New Article">+ New Article</a>
+  </div>
+</div>
+
+
+
+
+<div class="ph3 pv4 ph5-l">
+	<form class="admin-edit" action="javascript:void(0);">
+
+
+
+
+		<div class="cf mb1">
+	    <div class="fl w-100 w-50-ns pr3-ns">
+
+	      <label class="db mb2">Title {{#if data.url_slug}}<a href="http://{{site_url}}/blog/{{data.url_slug}}" target="_blank" class="dib v-mid ml1 green no-underline"><i class="fa fa-external-link "></i></a> {{/if}}
+	      </label>
+	      <input class="db w-100 ba bw1 pa3 b mb4" type="text" name="title" value="{{data.title}}" />
+
+
+	      <label class="db mb2">Publish Date</label>
+	      <input class="db w-100 ba bw1 pa3 b mb4 flatpickr" type="text" name="date_published" value="{{date data.date_published "F j, Y g:i A"}}" />
+
+
+				<label class="db mb4"><input type="checkbox" name="published" {{#if data.published}}checked="checked"{{/if}} /> Published on site</label>
+
+
+	      <label class="db mb2">Keywords</label>
+	      <input class="db w-100 ba bw1 pa3 b mb4" type="text" name="tags" value="{{data.tags}}" />
+
+
+	      <label class="db mb2">Summary</label>
+		    <textarea class="db w-100 h4 ba bw1 pa3 lh-copy mb4" name="summary">{{data.summary}}</textarea>
+
+
+	    </div>
+
+	    <div class="fl w-100 w-50-ns pl3-ns">
+
+
+				<label class="db mb2">Primary Image</label>
+				<small class="db silver mb3 lh-copy">
+				* Large photos work best (over 500px)<br />
+				* JPG, PNG, GIF format only
+				</small>
+				<!--[if lte IE 8]>
+				<small class="db red mb3 lh-copy">* Your browser doesn't support photo uploads. Please upgrade your browser to the latest version of Internet Explorer. Firefox and Google Chrome are also supported.</small>
+				<![endif]-->
+
+
+				<div class="upload-container dz-1 mb4" onclick="void(0)">
+
+					<div class="preview-image">
+						{{#if data.photo_url_medium}}
+						<img src="{{data.photo_url_medium}}" />
+						<div class="upload-delete" data-id="1"><img src="/images/lib/uploader/delete.svg" /></div>
+						{{/if}}
+					</div>
+
+					{{#unless data.photo_url_medium}}
+					<div class="dropzone" id="upload_1" data-id="1"></div>
+					{{/unless}}
+
+				</div>
+
+
+				<label class="db mb2">Image Caption <small class="silver ml1">(optional)</small></label>
+				<input class="db w-100 ba bw1 pa3 mb4" type="text" name="photo_caption" value="{{data.photo_caption}}">
+
+
+	    </div>
+		</div>
+
+
+
+
+    <label class="db mb2">Article Body</label>
+		<input type="hidden" name="body" />
+		<div class="textarea mb4" data-target="body" id="quill">
+		{{{data.body}}}
+		</div>
+
+
+
+
+		<input type="hidden" name="_id" value="{{data._id}}" />
+
+		<button rel="save"
+			data-type="article"
+			data-url="/admin/blog/save"
+			data-redirect="/admin/blog"
+			class="dib pa4 bg-near-black white bn b mb4">Save Article</button>
+
+		{{#if data._id}}
+		&nbsp;
+		<a rel="delete"
+			data-type="article"
+			data-url="/admin/blog/delete"
+			data-id="{{data._id}}"
+			data-redirect="/admin/blog">Delete</a>
+		{{/if}}
+
+
+	</form>
+</div>
+
+
+
+
+{{/if}}

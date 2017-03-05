@@ -1,0 +1,20 @@
+
+<div class="mb5 ph5">
+
+	{{#if data.photo_url_medium}}
+	<div class="mb4">
+		<a href="{{data.photo_url_original}}" target="_blank"><img class="w-100 db mb0" src="{{data.photo_url_medium}}" /></a>
+		{{#if data.photo_caption}}<div class="tc b i f6 white bg-silver pa3 o-50">{{data.photo_caption}}</div>{{/if}}
+	</div>
+	{{/if}}
+
+	<div class="mb2 f3 b">{{data.title}}</div>
+	<div class="gray f5 mb3">Posted by <b>{{data.screenname}}</b> &nbsp; &mdash; &nbsp; {{date data.date_published "m/d/Y"}}</div> <!-- l M jS, Y g:ia -->
+
+	{{#if data.keywords}}<div class="gray f5 mb3">{{#each data.keywords}}{{#unless first}}, {{/unless}}<a href="{{href}}" class="link b">{{title}}</a>{{/each}}</div>{{/if}}
+
+	<div class="lh-copy f4 quill-output">
+	{{{data.body}}}
+	</div>
+
+</div>

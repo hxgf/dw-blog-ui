@@ -1,0 +1,43 @@
+
+
+<div class="flex justify-between bg-black-70 w-100 ph3 pv2 pv3-ns ph4-m ph5-l">
+  <div class="f6 flex-grow">
+    <a class="link white-90 hover-white dib mr4" href="/admin/blog" title="All Users">All Articles</a>
+    <a class="link white-50 hover-white dib mr4" href="/admin/blog/edit/new" title="New Article">+ New Article</a>
+  </div>
+</div>
+
+
+<div class="ph3 pv3 ph4-m ph5-l">
+
+{{#if articles}}
+
+  <div class="overflow-auto">
+    <table class="f6 w-100 center" cellspacing="0">
+      <thead>
+        <tr class="stripe-dark">
+          <th class="fw6 tl pa3 bg-white">Title</th>
+          <th class="fw6 tl pa3 bg-white">Author</th>
+          <th class="fw6 tl pa3 bg-white">Publish Date</th>
+        </tr>
+      </thead>
+      <tbody class="lh-copy">
+				{{#each articles}}
+        <tr class="stripe-dark {{#unless published}}o-30{{/unless}}">
+          <td class="pa3"><a class="green" href="/admin/blog/edit/{{_id}}">{{title}}</a></td>
+          <td class="pa3">{{screenname}}</td>
+          <td class="pa3">{{date date_published "m/d/Y"}}</td>
+        </tr>
+				{{/each}}
+      </tbody>
+    </table>
+  </div>
+
+{{else}}
+
+	<h3>No articles yet...</h3>
+	<h4><a class="green" href="/admin/blog/edit/new">Write a new article</h4>
+
+{{/if}}
+
+</div>
